@@ -1,4 +1,4 @@
-Gradle Properties
+# Gradle Properties
 
 A dark package allowing to easily work with Gradle properties files.
 
