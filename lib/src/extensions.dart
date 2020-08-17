@@ -29,7 +29,17 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-library gradle_properties;
+// Author: Birju Vachhani
+// Created Date: August 17, 2020
 
-export 'src/extensions.dart';
-export 'src/gradle_properties.dart';
+import 'dart:io';
+
+import '../gradle_properties.dart';
+
+/// contains extensions for this library
+extension GradlePropertiesExtensions on File {
+  /// treats the file a gradle properties file and tries to read properties
+  /// from it.
+  /// Returns a future that contains an instance of [GradleProperties].
+  Future<GradleProperties> readProperties() => GradleProperties.fromFile(this);
+}
