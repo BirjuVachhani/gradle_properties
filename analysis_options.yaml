@@ -3,4 +3,5 @@ include: package:effective_dart/analysis_options.yaml
 linter:
   rules:
     - camel_case_types
-    - public_api_docs
+    - package_api_docs
+    - prefer_single_quotes
