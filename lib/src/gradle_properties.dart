@@ -83,7 +83,7 @@ class GradleProperties {
     }
     final sink = outputFile.openWrite();
     _props.forEach((key, value) => sink.writeln('$key=$value'));
-    sink.close();
+    await sink.close();
   }
 
   /// allows to access properties like a map
