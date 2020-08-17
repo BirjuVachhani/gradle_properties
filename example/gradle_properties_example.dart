@@ -29,6 +29,49 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-void main() {
-  // TODO
+import 'dart:io';
+
+import 'package:gradle_properties/gradle_properties.dart';
+
+void main() async {
+  // load properties file
+  final properties = await GradleProperties.fromFile(File('gradle.properties'));
+
+  // use extension to load properties
+  await File('gradle.properties').readProperties();
+
+  // load with file path
+  await GradleProperties.fromPath('gradle.properties');
+
+  // create new properties from [Map<String, String>]
+  await GradleProperties.fromMap(
+      {'name': 'Birju', 'email': 'brvachhani@gmail.com'});
+
+  // access properties with keys
+  print(properties['email']);
+
+  // check if certain property exists or not
+  print(properties.contains('first_name'));
+
+  // modify a property
+  properties['first_name'] = 'Birju';
+
+  // saves changes back to the same file
+  properties.save();
+
+  // saves changes to a different file
+  properties.save(File('test.properties'));
+
+  // access all the keys
+  print(properties.keys);
+
+  // access all the values
+  print(properties.values);
+
+  // get properties as [Map<String, String>]
+  print(properties.properties);
+
+  // add properties from a [Map<String, String>]
+  properties
+      .addAll({'website': 'birjuvachhani.dev', 'username': 'birjuvachhani'});
 }
