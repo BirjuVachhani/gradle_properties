@@ -2,7 +2,7 @@
 
 A dark package allowing to easily work with Gradle properties files.
 
-
+[![Tests](https://github.com/BirjuVachhani/gradle_properties/workflows/Tests/badge.svg?branch=master)](https://github.com/BirjuVachhani/gradle_properties/actions) [![Code Quality](https://github.com/BirjuVachhani/gradle_properties/workflows/Code%20Quality/badge.svg?branch=master)](https://github.com/BirjuVachhani/gradle_properties/actions) [![Codecov](https://img.shields.io/codecov/c/github/birjuvachhani/gradle_properties.svg)](https://codecov.io/gh/birjuvachhani/gradle_properties) [![gradle_properties](https://img.shields.io/pub/v/gradle_properties?label=gradle_properties)](https://pub.dev/packages/gradle_properties)
 
 ## Usage
 
