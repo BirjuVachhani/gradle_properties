@@ -11,3 +11,6 @@ build/
 doc/api/
 
 .idea/
+coverage/
+coverage_badge.svg
+test/.test_coverage.dart
