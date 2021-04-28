@@ -38,11 +38,11 @@ import 'dart:io';
 /// access properties, and modify properties.
 class GradleProperties {
   final Map<String, String> _props;
-  final File _file;
+  final File? _file;
 
   /// loads given properties from given file and returns a future that can be
   /// awaited.
-  static Future<GradleProperties> fromFile(File file) async {
+  static Future<GradleProperties?> fromFile(File file) async {
     try {
       final lines = file.readAsLinesSync();
       final props = {
@@ -58,7 +58,7 @@ class GradleProperties {
 
   /// loads given properties from given file path and returns a future that
   /// can be awaited
-  static Future<GradleProperties> fromPath(String path) =>
+  static Future<GradleProperties?> fromPath(String path) =>
       GradleProperties.fromFile(File(path));
 
   /// loads properties from given map
@@ -76,7 +76,7 @@ class GradleProperties {
   /// precedence over source file.
   ///
   /// throws [FileSystemException] if no file is provided.
-  Future<void> save([File file]) async {
+  Future<void> save([File? file]) async {
     final outputFile = file ?? _file;
     if (outputFile == null) {
       throw FileSystemException('Properties file not found');
@@ -87,7 +87,7 @@ class GradleProperties {
   }
 
   /// allows to access properties like a map
-  String operator [](String key) => _props[key];
+  String? operator [](String key) => _props[key];
 
   /// allows to set properties like a map do
   void operator []=(String key, String value) => _props[key] = value;

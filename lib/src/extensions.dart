@@ -41,5 +41,5 @@ extension GradlePropertiesExtensions on File {
   /// treats the file a gradle properties file and tries to read properties
   /// from it.
   /// Returns a future that contains an instance of [GradleProperties].
-  Future<GradleProperties> readProperties() => GradleProperties.fromFile(this);
+  Future<GradleProperties?> readProperties() => GradleProperties.fromFile(this);
 }

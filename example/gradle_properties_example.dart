@@ -48,30 +48,30 @@ void main() async {
       {'name': 'Birju', 'email': 'brvachhani@gmail.com'});
 
   // access properties with keys
-  print(properties['email']);
+  print(properties?['email']);
 
   // check if certain property exists or not
-  print(properties.contains('first_name'));
+  print(properties?.contains('first_name'));
 
   // modify a property
-  properties['first_name'] = 'Birju';
+  properties?['first_name'] = 'Birju';
 
   // saves changes back to the same file
-  properties.save();
+  properties?.save();
 
   // saves changes to a different file
-  properties.save(File('test.properties'));
+  properties?.save(File('test.properties'));
 
   // access all the keys
-  print(properties.keys);
+  print(properties?.keys);
 
   // access all the values
-  print(properties.values);
+  print(properties?.values);
 
   // get properties as [Map<String, String>]
-  print(properties.properties);
+  print(properties?.properties);
 
   // add properties from a [Map<String, String>]
   properties
-      .addAll({'website': 'birjuvachhani.dev', 'username': 'birjuvachhani'});
+      ?.addAll({'website': 'birjuvachhani.dev', 'username': 'birjuvachhani'});
 }
