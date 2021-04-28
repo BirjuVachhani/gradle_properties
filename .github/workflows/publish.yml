@@ -21,7 +21,7 @@ jobs:
       - name: Format code
         run: dart format --fix .
       - name: Dry Run
-        run: flutter pub publish --dry-run
+        run: pub publish --dry-run
       - name: Publish
         uses: sakebook/actions-flutter-pub-publisher@v1.3.1
         with:
