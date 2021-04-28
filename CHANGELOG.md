@@ -1,3 +1,7 @@
+# 1.0.0
+
+- Migrated to null safety.
+
 ## 0.1.1
 
 - Read/Write gradle properties files
