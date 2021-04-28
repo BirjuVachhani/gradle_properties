@@ -1,6 +1,15 @@
 name: Code Quality
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**.dart'
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   quality:
@@ -14,5 +23,5 @@ jobs:
         run: pub get
       - name: Analyzer
         run: dartanalyzer .
-      - name: Dartfmt
-        run: dartfmt --set-exit-if-changed -w --fix .
+      - name: Check Formatting
+        run: dart format --set-exit-if-changed .
