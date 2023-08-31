@@ -46,9 +46,11 @@ class GradleProperties {
     try {
       final lines = file.readAsLinesSync();
       final props = {
-        for (final line in lines) line.split('=')[0]: line.split('=')[1]
+        for (final line in lines)
+          if (line.split('=').length == 2)
+            line.split('=')[0]: line.split('=')[1]
       };
-      return GradleProperties._(props, file);
+      return props.isEmpty ? null : GradleProperties._(props, file);
     } catch (error, stacktrace) {
       print(error);
       print(stacktrace);
