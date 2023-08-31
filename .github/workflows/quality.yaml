@@ -14,16 +14,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  quality:
-    timeout-minutes: 5
+  publish:
     runs-on: ubuntu-latest
-    container:
-      image:  google/dart:latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: dart-lang/setup-dart@v1
+      - name: Dart SDK
+        run: dart --version
+      - uses: actions/checkout@v3
       - name: Install dependencies
-        run: pub get
-      - name: Analyzer
-        run: dartanalyzer .
-      - name: Check Formatting
+        run: dart pub get
+      - name: Check formatting
         run: dart format --set-exit-if-changed .
+      - name: Check lints
+        run:  dart analyze .
+      - name: Check Publish Warnings
+        run: dart pub publish --dry-run

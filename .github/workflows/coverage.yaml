@@ -16,18 +16,19 @@ on:
 jobs:
   coverage:
     runs-on: ubuntu-latest
-    container:
-      image:  google/dart:latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: dart-lang/setup-dart@v1
+      - name: Dart SDK
+        run: dart --version
+      - uses: actions/checkout@v3
       - name: Install dependencies
-        run: pub get
+        run: dart pub get
       - name: Run tests
-        run: pub run test
+        run: dart pub run test
       - name: Install test_coverage
-        run: pub global activate test_coverage
+        run: dart pub global activate test_coverage
       - name: Generate Code Coverage
-        run: pub global run test_coverage
+        run: dart pub global run test_coverage
       - uses: codecov/codecov-action@v1
         with:
           file: coverage/lcov.info
