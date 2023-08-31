@@ -37,6 +37,13 @@ void main() {
       expect(properties, null);
     });
 
+    test('load file test', () async {
+      final properties =
+          await GradleProperties.fromFile(File('test/test_data.properties'));
+      expect(properties, isNotNull);
+      expect(properties!.properties, hasLength(4));
+    });
+
     test('load from map test', () async {
       final properties = GradleProperties.fromMap({
         'first_name': 'John',

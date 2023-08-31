@@ -32,6 +32,7 @@
 // Author: Birju Vachhani
 // Created Date: August 17, 2020
 
+import 'dart:convert';
 import 'dart:io';
 
 /// Entry point of this library. It allows to read/write properties files,
@@ -44,13 +45,9 @@ class GradleProperties {
   /// awaited.
   static Future<GradleProperties?> fromFile(File file) async {
     try {
-      final lines = file.readAsLinesSync();
-      final props = {
-        for (final line in lines)
-          if (line.split('=').length == 2)
-            line.split('=')[0]: line.split('=')[1]
-      };
-      return props.isEmpty ? null : GradleProperties._(props, file);
+      final String content = await file.readAsString();
+      final parsed = _parse(content);
+      return GradleProperties._(parsed, file);
     } catch (error, stacktrace) {
       print(error);
       print(stacktrace);
@@ -67,6 +64,51 @@ class GradleProperties {
   GradleProperties.fromMap(this._props) : _file = null;
 
   GradleProperties._(this._props, [this._file]);
+
+  /// Creates a new instance of [GradleProperties] by parsing given content.
+  /// Throws [ArgumentError] if content is empty.
+  /// Throws [FormatException] if content is not in valid format.
+  factory GradleProperties.parse(String content) =>
+      GradleProperties.fromMap(_parse(content));
+
+  static Map<String, String> _parse(String content) {
+    content = content.trim();
+    if (content.isEmpty) throw ArgumentError('content cannot be empty');
+
+    final lines = const LineSplitter().convert(content);
+    final Map<String, String> props = {};
+
+    for (final (index, line) in lines.indexed) {
+      // comment line, skip
+      if (line.startsWith('#')) continue;
+
+      final tokens = line.split('=');
+      if (tokens.length != 2) {
+        throw FormatException('Invalid property line: ${index + 1}}');
+      }
+      final [key, value] = tokens;
+
+      // empty value.
+      if (value.trim().isEmpty) {
+        throw FormatException(
+            'Invalid property value at line: ${index + 1}: ${line.indexOf('=') + 1}');
+      }
+
+      props[key] = value;
+    }
+
+    return props;
+  }
+
+  /// Parses given content and returns [GradleProperties] instance if content
+  /// is valid. Returns null otherwise.
+  static GradleProperties? tryParse(String content) {
+    try {
+      return GradleProperties.parse(content);
+    } catch (_) {
+      return null;
+    }
+  }
 
   /// allows to save properties to a file.
   /// If a file is provided at the time of initialization that is if
