@@ -44,8 +44,7 @@ void main() async {
   await GradleProperties.fromPath('gradle.properties');
 
   // create new properties from [Map<String, String>]
-  await GradleProperties.fromMap(
-      {'name': 'Birju', 'email': 'brvachhani@gmail.com'});
+  GradleProperties.fromMap({'name': 'Birju', 'email': 'brvachhani@gmail.com'});
 
   // access properties with keys
   print(properties?['email']);

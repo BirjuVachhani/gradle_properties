@@ -38,7 +38,7 @@ void main() {
     });
 
     test('load from map test', () async {
-      final properties = await GradleProperties.fromMap({
+      final properties = GradleProperties.fromMap({
         'first_name': 'John',
         'last_name': 'Doe',
         'email': 'john@doe.com',
