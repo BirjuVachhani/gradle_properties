@@ -1,4 +1,4 @@
-# 1.0.1 (Unreleased)
+# 1.0.1
 
 - Bump up minimum Dart SDK version to 3.0.
 - Fix parsing crash when there is a comment in the properties file.
