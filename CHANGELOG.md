@@ -1,3 +1,10 @@
+# 1.0.1 (Unreleased)
+
+- Bump up minimum Dart SDK version to 3.0.
+- Fix parsing crash when there is a comment in the properties file.
+- Improve parsing to detect invalid lines and values.
+- Introduce `GradleProperties.parse` and `GradleProperties.tryParse` constructors.
+
 # 1.0.0
 
 - Migrated to null safety.
