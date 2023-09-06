@@ -41,7 +41,7 @@ void main() {
       final properties =
           await GradleProperties.fromFile(File('test/test_data.properties'));
       expect(properties, isNotNull);
-      expect(properties!.properties, hasLength(4));
+      expect(properties!.properties, hasLength(6));
     });
 
     test('load from map test', () async {
