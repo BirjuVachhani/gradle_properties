@@ -73,7 +73,6 @@ class GradleProperties {
 
   static Map<String, String> _parse(String content) {
     content = content.trim();
-    if (content.isEmpty) throw ArgumentError('content cannot be empty');
 
     final lines = const LineSplitter().convert(content);
     final Map<String, String> props = {};
