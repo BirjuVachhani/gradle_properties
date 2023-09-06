@@ -80,7 +80,7 @@ class GradleProperties {
 
     for (final (index, line) in lines.indexed) {
       // comment line, skip
-      if (line.startsWith('#')) continue;
+      if (line.startsWith('#') || line.isEmpty) continue;
 
       final tokens = line.split('=');
       if (tokens.length != 2) {
