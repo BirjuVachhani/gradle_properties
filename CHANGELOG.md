@@ -1,3 +1,8 @@
+# 1.0.2
+
+- Allow parsing empty lines in properties file by [@PeregrineFalcon](https://github.com/PeregrineFalcon)
+- Improve test coverage.
+
 # 1.0.1
 
 - Bump up minimum Dart SDK version to 3.0.
