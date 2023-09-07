@@ -98,6 +98,24 @@ void main() {
       expect(properties?.properties['last_name'], 'Vachhani');
     });
 
+    test('Empty value test', () async {
+      final properties = '''
+      first_name=John
+      last_name=
+      ''';
+      expect(() => GradleProperties.parse(properties), throwsFormatException);
+    });
+
+    test('tryParse test', () async {
+      final properties = '''
+      first_name=John
+      last_name=
+      ''';
+      expect(GradleProperties.tryParse(properties), isNull);
+      expect(
+          GradleProperties.tryParse(properties), isNot(throwsFormatException));
+    });
+
     tearDown(testFile.deleteSync);
   });
 }
